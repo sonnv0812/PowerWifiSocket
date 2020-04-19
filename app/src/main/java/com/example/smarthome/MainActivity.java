@@ -1,6 +1,7 @@
 package com.example.smarthome;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -31,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView =findViewById(R.id.recyclerView);
-        StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        GridLayoutManager manager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(manager);
         database = FirebaseDatabase.getInstance();
         myRef =database.getReference(LIST_DEVICE).child(ID_USER);
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     Device device =deviceSnapshot.getValue(Device.class);
                     listDevice.add(device);
                 }
+                Log.d(TAG, "onDataChange: "+listDevice.size());
                 deviceStatusAdapter = new DeviceStatusAdapter(listDevice);
                 recyclerView.setAdapter(deviceStatusAdapter);
             }
