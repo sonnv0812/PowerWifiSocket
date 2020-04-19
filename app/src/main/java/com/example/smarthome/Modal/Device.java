@@ -2,13 +2,19 @@ package com.example.smarthome.Modal;
 
 public class Device {
     private int status;
+
+
+
+    private String idDevice;
     private String nameDevice;
 
     public Device() {
+
     }
 
-    public Device(int status, String nameDevice) {
+    public Device(int status, String idDevice, String nameDevice) {
         this.status = status;
+        this.idDevice = idDevice;
         this.nameDevice = nameDevice;
     }
 
@@ -18,6 +24,14 @@ public class Device {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getIdDevice() {
+        return idDevice;
+    }
+
+    public void setIdDevice(String idDevice) {
+        this.idDevice = idDevice;
     }
 
     public String getNameDevice() {
@@ -32,6 +46,7 @@ public class Device {
     public String toString() {
         return "Device{" +
                 "status=" + status +
+                ", idDevice='" + idDevice + '\'' +
                 ", nameDevice='" + nameDevice + '\'' +
                 '}';
     }

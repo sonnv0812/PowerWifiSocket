@@ -1,6 +1,5 @@
 package com.example.smarthome.Adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarthome.Modal.Device;
 import com.example.smarthome.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.smarthome.MainActivity.ID_USER;
+import static com.example.smarthome.MainActivity.LIST_DEVICE;
 
 public class DeviceStatusAdapter extends RecyclerView.Adapter<DeviceStatusAdapter.DeviceStatusHolder> {
     List<Device> deviceList = new ArrayList<>();
@@ -58,13 +62,16 @@ public class DeviceStatusAdapter extends RecyclerView.Adapter<DeviceStatusAdapte
                 public void onClick(View v) {
                     data.setStatus(1-data.getStatus());
                     chooseImage(data.getStatus());
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference(LIST_DEVICE).child(ID_USER);
+                    myRef.child(data.getIdDevice()).setValue(new Device(data.getStatus(), data.getIdDevice(), data.getNameDevice()));
                 }
             });
 
 
         }
         private void chooseImage(int choose){
-            if(choose == 0 ) Picasso.get().load(R.drawable.turn_on).into(ivStatus);
+            if(choose == 1 ) Picasso.get().load(R.drawable.turn_on).into(ivStatus);
             else Picasso.get().load(R.drawable.turn_off).into(ivStatus);
         }
     }
