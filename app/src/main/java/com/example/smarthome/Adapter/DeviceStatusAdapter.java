@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarthome.Modal.Device;
 import com.example.smarthome.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +50,22 @@ public class DeviceStatusAdapter extends RecyclerView.Adapter<DeviceStatusAdapte
             tvDevice =itemView.findViewById(R.id.tvDevice);
             ivStatus =itemView.findViewById(R.id.ivStatus);
         }
-        public void setData(Device data){
+        public void setData(final Device data){
             tvDevice.setText(data.getNameDevice());
+            chooseImage(data.getStatus());
+            ivStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    data.setStatus(1-data.getStatus());
+                    chooseImage(data.getStatus());
+                }
+            });
 
+
+        }
+        private void chooseImage(int choose){
+            if(choose == 0 ) Picasso.get().load(R.drawable.turn_on).into(ivStatus);
+            else Picasso.get().load(R.drawable.turn_off).into(ivStatus);
         }
     }
 }
