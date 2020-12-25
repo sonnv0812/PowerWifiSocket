@@ -2,9 +2,6 @@ package com.example.smarthome.Modal;
 
 public class Device {
     private int status;
-
-
-
     private String idDevice;
     private String nameDevice;
 

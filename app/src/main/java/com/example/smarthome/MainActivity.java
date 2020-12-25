@@ -31,21 +31,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView =findViewById(R.id.recyclerView);
-        GridLayoutManager manager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        recyclerView = findViewById(R.id.recyclerView);
+        GridLayoutManager manager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         database = FirebaseDatabase.getInstance();
-        myRef =database.getReference(LIST_DEVICE).child(ID_USER);
+        myRef = database.getReference(LIST_DEVICE).child(ID_USER);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Device> listDevice = new ArrayList<>();
                 for(DataSnapshot deviceSnapshot:dataSnapshot.getChildren()){
-                    Device device =deviceSnapshot.getValue(Device.class);
+                    Device device = deviceSnapshot.getValue(Device.class);
                     listDevice.add(device);
                 }
-                Log.d(TAG, "onDataChange: "+listDevice.size());
+                Log.d(TAG, "onDataChange: " + listDevice.size());
                 deviceStatusAdapter = new DeviceStatusAdapter(listDevice);
                 recyclerView.setAdapter(deviceStatusAdapter);
             }

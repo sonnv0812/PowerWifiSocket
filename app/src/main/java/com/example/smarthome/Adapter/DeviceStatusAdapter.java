@@ -1,5 +1,6 @@
 package com.example.smarthome.Adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class DeviceStatusAdapter extends RecyclerView.Adapter<DeviceStatusAdapte
         return deviceList.size();
     }
 
+
     public class DeviceStatusHolder extends RecyclerView.ViewHolder{
         public TextView tvDevice;
         public ImageView ivStatus;
@@ -67,8 +69,6 @@ public class DeviceStatusAdapter extends RecyclerView.Adapter<DeviceStatusAdapte
                     myRef.child(data.getIdDevice()).setValue(new Device(data.getStatus(), data.getIdDevice(), data.getNameDevice()));
                 }
             });
-
-
         }
         private void chooseImage(int choose){
             if(choose == 1 ) Picasso.get().load(R.drawable.turn_on).into(ivStatus);
