@@ -1,6 +1,5 @@
-package com.example.smarthome.Adapter;
+package com.example.smarthome.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smarthome.Modal.Device;
+import com.example.smarthome.model.Device;
 import com.example.smarthome.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

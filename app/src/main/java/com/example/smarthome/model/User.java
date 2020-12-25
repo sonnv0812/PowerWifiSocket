@@ -1,4 +1,4 @@
-package com.example.smarthome.Modal;
+package com.example.smarthome.model;
 
 public class User {
     private String id;

@@ -2,15 +2,13 @@ package com.example.smarthome;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.smarthome.Adapter.DeviceStatusAdapter;
-import com.example.smarthome.Modal.Device;
+import com.example.smarthome.adapter.DeviceStatusAdapter;
+import com.example.smarthome.model.Device;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
